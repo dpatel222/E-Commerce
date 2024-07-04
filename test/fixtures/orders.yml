@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  sub_total: 1.5
+  total: 1.5
+  GST: 1.5
+  PST: 1.5
+  HST: 1.5
+
+two:
+  user: two
+  sub_total: 1.5
+  total: 1.5
+  GST: 1.5
+  PST: 1.5
+  HST: 1.5
