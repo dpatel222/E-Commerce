@@ -70,3 +70,5 @@ gem 'devise'
 
 gem 'rubocop'
 gem 'rubocop-rails'
+
+gem "tailwindcss-rails", "~> 2.6"
