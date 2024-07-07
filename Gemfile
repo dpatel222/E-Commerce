@@ -65,3 +65,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem 'devise'
+
+gem 'rubocop'
+gem 'rubocop-rails'
