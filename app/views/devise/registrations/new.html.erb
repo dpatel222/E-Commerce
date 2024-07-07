@@ -13,6 +13,10 @@
     <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
+  <div class="field">
+    <%= f.label :province_id, "Province" %><br />
+    <%= f.collection_select :province_id, Province.all, :id, :name, prompt: "Select your province" %>
+  </div>
 
   <div class="field">
     <%= f.label :password %>

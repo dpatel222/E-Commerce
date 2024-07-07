@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_07_162936) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_07_223747) do
   create_table "cart_items", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "product_id", null: false
@@ -64,9 +64,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_162936) do
 
   create_table "provinces", force: :cascade do |t|
     t.string "name"
-    t.float "HST"
-    t.float "PST"
-    t.float "GST"
+    t.decimal "HST", precision: 5, scale: 2, default: "0.0"
+    t.decimal "PST", precision: 5, scale: 2, default: "0.0"
+    t.decimal "GST", precision: 5, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,6 +83,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_07_162936) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
