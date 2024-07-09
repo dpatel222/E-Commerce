@@ -7,7 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Province.create([
+=begin Province.create([
                   { name: 'Alberta', GST: 5.00, PST: 0.00, HST: 0.00 },
                   { name: 'British Columbia', GST: 5.00, PST: 7.00, HST: 0.00 },
                   { name: 'Manitoba', GST: 5.00, PST: 7.00, HST: 0.00 },
@@ -22,3 +22,10 @@ Province.create([
                   { name: 'Saskatchewan', GST: 5.00, PST: 6.00, HST: 0.00 },
                   { name: 'Yukon', GST: 5.00, PST: 0.00, HST: 0.00 }
                 ])
+=end
+
+Product.create(
+  name: 'My Product',
+  category: 'Category 1',
+  price: '10'
+)

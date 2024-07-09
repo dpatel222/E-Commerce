@@ -34,6 +34,9 @@
                 <li>
                   <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
                 </li>
+                  <li>
+                  <%= link_to "User Settings", edit_user_registration_path,class: "bg-sky-500 hover:bg-sky-700" %>
+                </li>
             <% else %>
                 <li>
                     <%= link_to "Sign Up", new_user_registration_path, class: "bg-sky-500 hover:bg-sky-700"%>                
@@ -41,6 +44,7 @@
                 <li>
                     <%= link_to "Sign In", new_user_session_path, class: "bg-sky-500 hover:bg-sky-700"%>                
                 </li>
+              
             <% end %>
           </ul>
         </div>
