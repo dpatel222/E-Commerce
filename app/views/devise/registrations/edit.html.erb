@@ -18,6 +18,11 @@
     <%= f.collection_select :province_id, Province.all, :id, :name, prompt: "Select your province" %>
   </div>
 
+   <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>

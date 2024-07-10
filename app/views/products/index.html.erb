@@ -1,0 +1,23 @@
+<div class="mb-4">
+        <%= form_with url: products_path, method: :get, local: true do %>
+          <div class="flex items-center space-x-4">
+            <div class="flex-1">
+              <%= label_tag :category_id, "Filter by Category", class: "block mb-2 text-sm font-medium" %>
+              <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: "Select a category", class: "block w-full p-2 border rounded bg-gray-50 dark:bg-gray-700" %>
+            </div>
+            <div>
+              <%= submit_tag "Filter", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+<div class="p-4 max-w-screen-xl mx-auto ">
+  <ol>
+      <% @products.each do |product|%>
+          <li>
+             <%= link_to product.name, product_path(product) %>
+          </li>
+      <% end %>
+  </ol>
+</div>
