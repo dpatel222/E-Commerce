@@ -1,0 +1,8 @@
+<h1><%= @category.name %></h1>
+
+<h2>Products</h2>
+<ul>
+  <% @products.each do |product| %>
+    <li><%= product.name %> - <%= number_to_currency(product.price) %></li>
+  <% end %>
+</ul>

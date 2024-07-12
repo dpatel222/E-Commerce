@@ -1,33 +1,22 @@
-<div class="mb-4 px-4 sm:px-6">
-  <%= form_with url: products_path, method: :get do %>
-    <div class="flex flex-col sm:flex-row sm:items-end sm:space-x-4">
+
+<div class="mb-4">
+  <%= form_with url: category_path(:category_id), method: :get, local: true do %>
+    <div class="flex items-center space-x-4">
       <div class="flex-1">
         <%= label_tag :category_id, "Filter by Category", class: "block mb-2 text-sm font-medium" %>
         <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, params[:category_id]), prompt: "Select a category", class: "block w-full p-2 border rounded bg-gray-50 dark:bg-gray-700" %>
       </div>
       <div class="flex-1">
-        <%= label_tag :filter, "Filter:", class: "block mb-2 text-sm font-medium" %>
+        <%= label_tag :filter, "Additional Filters:", class: "block mb-2 text-sm font-medium" %>
         <%= select_tag :filter, options_for_select([['On Sale', 'on_sale'], ['Recently Updated', 'recently_updated']], params[:filter]), prompt: "All Products", class: "block w-full p-2 border rounded bg-gray-50 dark:bg-gray-700" %>
       </div>
       <div class="flex-1">
         <%= label_tag :search, "Search by Name", class: "block mb-2 text-sm font-medium" %>
         <%= text_field_tag :search, params[:search], class: "block w-full p-2 border rounded bg-gray-50 dark:bg-gray-700" %>
       </div>
-      <div class="flex items-end sm:ml-4">
-        <%= submit_tag "Filter", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700" %>
+      <div>
+        <%= submit_tag "Filter", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mt-6" %>
       </div>
     </div>
-  <% end %>
-</div>
-
-<div class="p-4 max-w-screen-xl mx-auto">
-  <% if @products.any? %>
-    <% @products.each do |product| %>
-      <div class="p-4 mb-4 bg-white dark:bg-gray-700 rounded shadow-md">
-        <%= link_to product.name, product_path(product) %>
-      </div>
-    <% end %>
-  <% else %>
-    <p class="text-center text-gray-700 dark:text-gray-300">No products found.</p>
   <% end %>
 </div>
