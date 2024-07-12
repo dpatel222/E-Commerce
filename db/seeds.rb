@@ -23,7 +23,7 @@
 #                   { name: 'Yukon', GST: 5.00, PST: 0.00, HST: 0.00 }
 #                 ])
 
-require 'products.csv'
+=begin require 'products.csv'
 Product.destroy_all
 
 Category.destroy_all
@@ -46,3 +46,6 @@ products.each do |product|
     on_sale: product['on sale']
   )
 end
+=end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+

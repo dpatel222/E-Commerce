@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
-
     @products = @products.where(category_id: params[:category_id]) if params[:category_id].present?
 
     if params[:filter].present?
@@ -12,11 +11,10 @@ class ProductsController < ApplicationController
         @products = @products.recently_updated
       end
     end
-
     @products = @products.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
 
     return unless @products.empty?
-
+    
     flash.now[:alert] = 'No products match your search criteria.'
   end
 

@@ -7,4 +7,13 @@ class Product < ApplicationRecord
 
   scope :on_sale, -> { where(on_sale: true) }
   scope :recently_updated, -> { where('updated_at >= ?', 1.days.ago) }
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[category_id created_at description id id_value name on_sale price stock_quantity
+       updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[cart_items category ordered_items orders users]
+  end
 end
