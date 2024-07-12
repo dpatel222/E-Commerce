@@ -23,7 +23,7 @@
 #                   { name: 'Yukon', GST: 5.00, PST: 0.00, HST: 0.00 }
 #                 ])
 
-require 'csv'
+require 'products.csv'
 Product.destroy_all
 
 Category.destroy_all
@@ -42,6 +42,7 @@ products.each do |product|
     price: product['price'],
     description: product['description'],
     stock_quantity: product['stock quantity'],
-    category: categories
+    category: categories,
+    on_sale: product['on sale']
   )
 end
