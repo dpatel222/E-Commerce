@@ -6,13 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    @provinces = Province.all
     super
   end
 
   # POST /resource
   def create
-    @provinces = Province.all
     super
   end
 

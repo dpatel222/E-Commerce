@@ -15,6 +15,8 @@ class ProductsController < ApplicationController
     end
     @products = @products.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
 
+    @products = @products.page(params[:page]).per(10)
+
     return unless @products.empty?
 
     flash.now[:alert] = 'No products match your search criteria.'
