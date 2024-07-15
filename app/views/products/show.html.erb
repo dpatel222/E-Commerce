@@ -1,16 +1,20 @@
 
-  <h1 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white"><%= @product.name %></h1>
-  <p class="text-gray-700 dark:text-gray-300 mb-4"><%= @product.description %></p>
-  <div class="mb-4">
-    <span class="block text-lg font-semibold text-gray-900 dark:text-white">Price:</span>
-    <span class="text-gray-700 dark:text-gray-300"><%= number_to_currency(@product.price) %></span>
-  </div>
-  <div class="mb-4">
-    <span class="block text-lg font-semibold text-gray-900 dark:text-white">Stock Quantity:</span>
-    <span class="text-gray-700 dark:text-gray-300"><%= @product.stock_quantity %></span>
-  </div>
-  <div class="mb-4">
-    <span class="block text-lg font-semibold text-gray-900 dark:text-white">Category:</span>
-    <span class="text-gray-700 dark:text-gray-300"><%= @product.category.name %></span>
+  <div>
+    <h1 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white"><%= @product.name %></h1>
+    <p class="text-gray-700 dark:text-gray-300 mb-4"><%= @product.description %></p>
+    <div class="mb-4">
+      <span class="block text-lg font-semibold text-gray-900 dark:text-white">Price:</span>
+      <span class="text-gray-700 dark:text-gray-300"><%= number_to_currency(@product.price) %></span>
+    </div>
+    <div class="mb-4">
+      <span class="block text-lg font-semibold text-gray-900 dark:text-white">Stock Quantity:</span>
+      <span class="text-gray-700 dark:text-gray-300"><%= @product.stock_quantity %></span>
+    </div>
+    <div class="mb-4">
+      <span class="block text-lg font-semibold text-gray-900 dark:text-white">Category:</span>
+      <span class="text-gray-700 dark:text-gray-300"><%= @product.category.name %></span>
+    </div>
+
+
   </div>
 

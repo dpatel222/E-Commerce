@@ -20,14 +20,4 @@
   <% end %>
 </div>
 
-<div class="p-4 max-w-screen-xl mx-auto">
-  <% if @products.any? %>
-    <% @products.each do |product| %>
-      <div class="p-4 mb-4 bg-white dark:bg-gray-700 rounded shadow-md">
-        <%= link_to product.name, product_path(product) %>
-      </div>
-    <% end %>
-  <% else %>
-    <p class="text-center text-gray-700 dark:text-gray-300">No products found.</p>
-  <% end %>
-</div>
+<%= render partial: 'products/prducts' %>

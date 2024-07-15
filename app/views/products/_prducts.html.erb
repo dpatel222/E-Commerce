@@ -1,0 +1,14 @@
+<div class="p-4 max-w-screen-xl mx-auto">
+  <% if @products.any? %>
+    <% @products.each do |product| %>
+      <div class="p-4 mb-4 bg-white dark:bg-gray-700 rounded shadow-md flex flex-col justify-between">
+        <%= link_to product.name, product_path(product) %>
+       <%#  <%= link_to 'add to cart', add_to_cart_path(product.id), data: { turbo_method: :post }, class: 'text-blue-500 self-end mt-2' %>
+      </div>
+
+
+    <% end %>
+  <% else %>
+    <p class="text-center text-gray-700 dark:text-gray-300">No products found.</p>
+  <% end %>
+</div>

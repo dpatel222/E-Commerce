@@ -3,8 +3,6 @@ import "@hotwired/turbo-rails";
 import "controllers";
 //= require jquery
 //= require jquery_ujs
-import { Turbo } from "@hotwired/turbo-rails";
-import { Rails } from "@rails/request.js";
 
 Turbo.start();
-Rails.start();
+

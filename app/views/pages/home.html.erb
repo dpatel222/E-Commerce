@@ -1,5 +1,6 @@
 <h1 class="text-2xl font-bold mb-4">Welcome to Your Application</h1>
 
+<%= debug session[:cart]%>
 <%= form_with url: redirect_path, method: :post, local: true do |form| %>
   <div class="flex items-center space-x-4">
     <div class="flex-1">
@@ -14,15 +15,5 @@
 <% end %>
 
 <% if @selected_category %>
-  <div class="mb-4">
-    <h2 class="text-xl font-bold">Selected Category: <%= @selected_category.name %></h2>
-  </div>
-  <div>
-    <h3 class="text-lg font-bold mb-2">Products:</h3>
-    <ul class="list-disc list-inside">
-      <% @selected_category.products.each do |product| %>
-        <li><%= product.name %> - <%= number_to_currency(product.price) %></li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render partial: 'products/prducts' %>
 <% end %>

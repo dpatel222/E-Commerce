@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  # before_action :initialize_session
+
   def index
     @products = Product.all
     @products = @products.where(category_id: params[:category_id]) if params[:category_id].present?
@@ -14,11 +16,23 @@ class ProductsController < ApplicationController
     @products = @products.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
 
     return unless @products.empty?
-    
+
     flash.now[:alert] = 'No products match your search criteria.'
   end
 
   def show
     @product = Product.find(params[:id])
   end
+
+  #   def add_to_cart
+  #     id = params[:id].to_i
+  #     session[:cart] << id unless session[:cart].include?(id)
+  #     redirect_to root_path
+  #   end
+  #
+  #   private
+  #
+  #   def initialize_session
+  #     session[:cart] ||= []
+  #   end
 end
