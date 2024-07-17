@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :orders
   has_many :ordered_items
 
+  validates :address, presence: true
+
   def self.ransackable_associations(auth_object = nil)
     %w[cart_items ordered_items orders products province]
   end

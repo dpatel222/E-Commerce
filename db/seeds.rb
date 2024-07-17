@@ -7,23 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-# Province.create([
-#                   { name: 'Alberta', GST: 5.00, PST: 0.00, HST: 0.00 },
-#                   { name: 'British Columbia', GST: 5.00, PST: 7.00, HST: 0.00 },
-#                   { name: 'Manitoba', GST: 5.00, PST: 7.00, HST: 0.00 },
-#                   { name: 'New Brunswick', GST: 0.00, PST: 0.00, HST: 15.00 },
-#                   { name: 'Newfoundland and Labrador', GST: 0.00, PST: 0.00, HST: 15.00 },
-#                   { name: 'Northwest Territories', GST: 5.00, PST: 0.00, HST: 0.00 },
-#                   { name: 'Nova Scotia', GST: 0.00, PST: 0.00, HST: 15.00 },
-#                   { name: 'Nunavut', GST: 5.00, PST: 0.00, HST: 0.00 },
-#                   { name: 'Ontario', GST: 0.00, PST: 0.00, HST: 13.00 },
-#                   { name: 'Prince Edward Island', GST: 0.00, PST: 0.00, HST: 15.00 },
-#                   { name: 'Quebec', GST: 5.00, PST: 9.975, HST: 0.00 },
-#                   { name: 'Saskatchewan', GST: 5.00, PST: 6.00, HST: 0.00 },
-#                   { name: 'Yukon', GST: 5.00, PST: 0.00, HST: 0.00 }
-#                 ])
+Province.create([
+                  { name: 'Alberta', GST: 5.00, PST: 0.00, HST: 0.00 },
+                  { name: 'British Columbia', GST: 5.00, PST: 7.00, HST: 0.00 },
+                  { name: 'Manitoba', GST: 5.00, PST: 7.00, HST: 0.00 },
+                  { name: 'New Brunswick', GST: 0.00, PST: 0.00, HST: 15.00 },
+                  { name: 'Newfoundland and Labrador', GST: 0.00, PST: 0.00, HST: 15.00 },
+                  { name: 'Northwest Territories', GST: 5.00, PST: 0.00, HST: 0.00 },
+                  { name: 'Nova Scotia', GST: 0.00, PST: 0.00, HST: 15.00 },
+                  { name: 'Nunavut', GST: 5.00, PST: 0.00, HST: 0.00 },
+                  { name: 'Ontario', GST: 0.00, PST: 0.00, HST: 13.00 },
+                  { name: 'Prince Edward Island', GST: 0.00, PST: 0.00, HST: 15.00 },
+                  { name: 'Quebec', GST: 5.00, PST: 9.975, HST: 0.00 },
+                  { name: 'Saskatchewan', GST: 5.00, PST: 6.00, HST: 0.00 },
+                  { name: 'Yukon', GST: 5.00, PST: 0.00, HST: 0.00 }
+                ])
 
-=begin require 'products.csv'
+require 'csv'
 Product.destroy_all
 
 Category.destroy_all
@@ -46,6 +46,9 @@ products.each do |product|
     on_sale: product['on sale']
   )
 end
-=end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
+=begin if Rails.env.development?
+  AdminUser.create!(email: 'admin@example.com', password: 'password',
+                    password_confirmation: 'password')
+end
+=end
