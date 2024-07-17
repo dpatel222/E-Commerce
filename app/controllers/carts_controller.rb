@@ -11,4 +11,21 @@ class CartsController < ApplicationController
                     end&.compact || []
                   end
   end
+
+  def update
+    product_id = params[:product_id].to_i
+    quantity = params[:quantity].to_i
+
+    if current_user
+      cart_item = current_user.cart_items.find_by(product_id:)
+      cart_item.update(quantity:) if cart_item
+    else
+      session[:cart].each do |item|
+        item['quantity'] = quantity if item['product_id'] == product_id
+      end
+    end
+
+    flash[:notice] = 'Cart updated successfully.'
+    redirect_to cart_path
+  end
 end
