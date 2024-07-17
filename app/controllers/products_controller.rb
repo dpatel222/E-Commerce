@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     end
     @products = @products.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
 
-    @products = @products.page(params[:page]).per(10)
+    @products = @products.page(params[:page]).per(7)
 
     return unless @products.empty?
 

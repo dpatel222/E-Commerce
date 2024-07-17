@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   has_many :orders, through: :ordered_items
 
   scope :on_sale, -> { where(on_sale: true) }
-  scope :recently_updated, -> { where('updated_at >= ?', 1.days.ago) }
+  scope :recently_updated, -> { where('updated_at >= ?', 0.5.days.ago) }
 
   def self.ransackable_attributes(auth_object = nil)
     %w[category_id created_at description id id_value name on_sale price stock_quantity
