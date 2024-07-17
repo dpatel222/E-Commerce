@@ -43,27 +43,35 @@ class CartsController < ApplicationController
   end
 
   def order_items
-    province = current_user.province
+    province = current_user.province if current_user
     cart_items = current_user ? current_user.cart_items : session[:cart]
 
     order = Order.create(user: current_user)
 
     cart_items.each do |cart_item|
       product = Product.find(cart_item['product_id'])
-      total_tax_rate = (province&.HST.to_f + province&.PST.to_f + province&.GST.to_f).to_f
       item_price = product.price.to_f
-      total_price = item_price * cart_item['quantity'].to_i * (1 + total_tax_rate / 100.0)
+      quantity = cart_item['quantity'].to_i
 
+      # Calculate taxes based on current rates
+      total_tax_rate = (province.HST.to_f + province.PST.to_f + province.GST.to_f) / 100.0
+      total_price = item_price * quantity * (1 + total_tax_rate)
+
+      # Create ordered item
       OrderedItem.create(
         user: current_user,
         order:,
         product:,
-        quantity: cart_item['quantity'].to_i,
+        quantity:,
         item_price:,
-        total_price:
+        total_price:,
+        hst: province.HST,
+        pst: province.PST.to_f,
+        gst: province.GST
       )
     end
 
+    # Clear cart after placing order
     current_user ? current_user.cart_items.destroy_all : session[:cart] = []
     flash[:notice] = 'Your order has been placed successfully.'
     redirect_to root_path
@@ -77,6 +85,7 @@ class CartsController < ApplicationController
       @subtotal = @cart_items.sum { |item| item.product.price * item.quantity }
       @taxes = calculate_taxes(@province, @subtotal)
 
+      # Calculate total based on current rates
       @total = @subtotal + @taxes[:hst] + @taxes[:pst] + @taxes[:gst]
     else
       redirect_to root_path, alert: 'You need to be logged in to view your cart.'

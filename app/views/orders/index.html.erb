@@ -1,0 +1,29 @@
+<!-- app/views/orders/index.html.erb -->
+
+<h1 class="text-3xl font-bold mb-4">Orders for <%= @user.email %></h1>
+
+<% @orders.each do |order| %>
+  <div class="border p-4 mb-4  bg-white dark:bg-gray-700 rounded shadow-md">
+    <h3 class="text-xl font-bold mb-2">Order #<%= order.id %></h3>
+    <p class="text-gray-600">Order Date: <%= order.created_at.strftime("%B %d, %Y %I:%M:%S:%p ") %></p>
+    <ul class="mt-2">
+      <% order.ordered_items.each do |item| %>
+        <li class="border-t py-2">
+          <div class="flex justify-between">
+            <div>
+              <p class="text-lg"><%= item.product.name %></p>
+              <p>Quantity: <%= item.quantity %></p>
+              <p>Item Price: <%= number_to_currency(item.item_price) %></p>
+              <p>Total Price: <%= number_to_currency(item.total_price) %></p>
+            </div>
+            <div>
+              <p>HST: <%= item.hst %>%</p>
+              <p>PST: <%= item.pst %>%</p>
+              <p>GST: <%= item.gst %>%</p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
