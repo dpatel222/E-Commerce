@@ -1,0 +1,41 @@
+<!-- app/views/carts/confirm_order.html.erb -->
+<h1 class="text-3xl font-bold mb-4">Confirm Order</h1>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white shadow-md rounded-lg">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b">Product</th>
+        <th class="py-2 px-4 border-b">Price</th>
+        <th class="py-2 px-4 border-b">Quantity</th>
+        <th class="py-2 px-4 border-b">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |item| %>
+        <tr class="bg-gray-100 border-b">
+          <td class="py-2 px-4 text-center"><%= item.product.name %></td>
+          <td class="py-2 px-4 text-center"><%= number_to_currency(item.product.price) %></td>
+          <td class="py-2 px-4 text-center"><%= item.quantity %></td> <!-- Align quantity center -->
+          <td class="py-2 px-4 text-center"><%= number_to_currency(item.product.price * item.quantity) %></td> <!-- Align total right -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="mt-4">
+  <h2 class="text-xl font-bold mb-2">Taxes</h2>
+  <ul>
+    <li><strong>HST:</strong> <%= number_to_currency(@taxes[:hst]) %></li>
+    <li><strong>PST:</strong> <%= number_to_currency(@taxes[:pst]) %></li>
+    <li><strong>GST:</strong> <%= number_to_currency(@taxes[:gst]) %></li>
+  </ul>
+</div>
+
+<div class="mt-4">
+  <h2 class="text-xl font-bold mb-2">Total</h2>
+  <p><strong>Total:</strong> <%= number_to_currency(@total) %></p>
+</div>
+
+<%= link_to 'Confirm Order', order_items_cart_path, class: "mt-4 bg-green-500 text-white px-6 py-2 rounded", data: { turbo_method: :post } %>

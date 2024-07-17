@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   resource :cart, only: %i[show update destroy] do
     post 'order_items', on: :collection
   end
+  resource :cart, only: %i[show update destroy] do
+    post 'order_items', on: :collection
+    get 'confirm_order', on: :collection
+  end
 end
