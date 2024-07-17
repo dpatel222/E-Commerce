@@ -28,4 +28,17 @@ class CartsController < ApplicationController
     flash[:notice] = 'Cart updated successfully.'
     redirect_to cart_path
   end
+
+  def destroy
+    product_id = params[:product_id].to_i
+
+    if current_user
+      current_user.cart_items.find_by(product_id:)&.destroy
+    else
+      session[:cart].delete_if { |item| item['product_id'] == product_id }
+    end
+
+    flash[:notice] = 'Item removed from cart.'
+    redirect_to cart_path
+  end
 end
