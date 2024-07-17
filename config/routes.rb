@@ -18,4 +18,9 @@ Rails.application.routes.draw do
   #
   post 'products/add_to_cart/:id', to: 'products#add_to_cart', as: 'add_to_cart'
   delete 'products/remove_from_cart/:id', to: 'products#remove_from_cart', as: 'remove_from_cart'
+
+
+  resource :cart, only: %i[show update destroy] do
+    post 'order_items', on: :collection
+  end
 end
