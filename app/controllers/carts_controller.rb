@@ -88,7 +88,7 @@ class CartsController < ApplicationController
       # Calculate total based on current rates
       @total = @subtotal + @taxes[:hst] + @taxes[:pst] + @taxes[:gst]
     else
-      redirect_to root_path, alert: 'You need to be logged in to view your cart.'
+      redirect_to root_path, alert: 'You need to be logged in to place order.'
     end
   end
 

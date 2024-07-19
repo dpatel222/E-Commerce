@@ -1,13 +1,23 @@
 <div class="p-4 max-w-screen-xl mx-auto">
   <% if @products.any? %>
-    <% @products.each do |product| %>
-      <div class="p-4 mb-4 bg-white dark:bg-gray-700 rounded shadow-md flex flex-col justify-between">
-        <%= link_to product.name, product_path(product) %>
-       <%= link_to 'add to cart', add_to_cart_path(product.id), data: { turbo_method: :post }, class: 'text-blue-500 self-end mt-2' %>
-      </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <% @products.each do |product| %>
+        <div class="relative group">
+          <div class="p-4 bg-white dark:bg-gray-700 rounded shadow-md flex flex-col justify-between">
+            <%= link_to product.name, product_path(product), class: 'text-lg font-semibold mb-2' %>
 
-
-    <% end %>
+            <div class="mb-2">
+              <% if product.image.present? %>
+                <%= image_tag(product.image, class: "w-full h-48 object-cover") %>
+              <% else %>
+                <p class="text-center">No image</p>
+              <% end %>
+            </div>
+          </div>
+          <%= link_to 'Add to cart', add_to_cart_path(product.id), data: { turbo_method: :post }, class: 'block bg-blue-500 text-white text-center py-2 mt-2 hover:bg-blue-700' %>
+        </div>
+      <% end %>
+    </div>
   <% else %>
     <p class="text-center text-gray-700 dark:text-gray-300">No products found.</p>
   <% end %>

@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   has_many :ordered_items
   has_many :orders, through: :ordered_items
 
+  has_one_attached :image
+
   scope :on_sale, -> { where(on_sale: true) }
   scope :recently_updated, -> { where('updated_at >= ?', 0.5.days.ago) }
 
