@@ -1,19 +1,73 @@
-<h1 class="text-2xl font-bold mb-4">Welcome to Your Application</h1>
 
-<%= debug session[:cart]%>
-<%= form_with url: redirect_path, method: :post, local: true do |form| %>
-  <div class="flex items-center space-x-4">
-    <div class="flex-1">
-      <%= form.label :category_id, "Choose a category:", class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :category_id, options_from_collection_for_select(@categories, :id, :name, @selected_category_id), { prompt: "Select a category" }, class: "block w-full mt-1 p-2 border border-gray-300 rounded-md shadow-sm bg-white dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
-      
-    </div>
-    <div>
-        <%= form.submit "Filter", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mt-6"%>
-    </div>
+
+  <div class="container mx-auto p-6">
+    <section class="text-center mb-8">
+      <h2 class="text-4xl font-bold text-gray-900 dark:text-white">Welcome to Wired Circuit</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 mt-4">
+        For over 20 years, <strong>Wired Circuit</strong> has been your go-to destination for top-quality electronics and unmatched customer service. Founded in 2004, we have built a solid reputation for offering the best in technology and exceptional service.
+      </p>
+      <p class="text-lg text-gray-700 dark:text-gray-300 mt-4">
+        We are excited to bring that same dedication to you online. Our new e-commerce site is designed to make your shopping experience seamless and enjoyable, right from the comfort of your home.
+      </p>
+    </section>
+
+    <section class="mb-8">
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Explore Our Wide Range of Products</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+          <h4 class="text-xl font-semibold text-gray-900 dark:text-white">Consumer Electronics</h4>
+          <p class="text-gray-700 dark:text-gray-300 mt-2">Discover the latest in smartphones, tablets, laptops, and more.</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+          <h4 class="text-xl font-semibold text-gray-900 dark:text-white">Home Entertainment</h4>
+          <p class="text-gray-700 dark:text-gray-300 mt-2">Upgrade your home theater system with our range of TVs, audio equipment, and smart home devices.</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+          <h4 class="text-xl font-semibold text-gray-900 dark:text-white">Computer Components</h4>
+          <p class="text-gray-700 dark:text-gray-300 mt-2">Find top-quality parts for building or upgrading your PC.</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+          <h4 class="text-xl font-semibold text-gray-900 dark:text-white">DIY Kits</h4>
+          <p class="text-gray-700 dark:text-gray-300 mt-2">Get hands-on with electronics kits for hobbyists and professionals alike.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center mb-8">
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Why Shop With Us?</h3>
+      <p class="text-lg text-gray-700 dark:text-gray-300">
+        With two decades of industry experience, we offer products that meet our high standards, exceptional service, and secure shopping. Enjoy peace of mind with our secure payment options and hassle-free returns.
+      </p>
+    </section>
+
+    <section class="text-center mb-8">
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Featured Products</h3>
+      <p class="text-lg text-gray-700 dark:text-gray-300">Check out some of our bestsellers and new arrivals that are sure to impress.</p>
+      <%= link_to 'Shop Now', products_path, class: 'inline-block bg-blue-500 text-white text-center py-2 px-4 mt-4 hover:bg-blue-700 rounded' %>
+    </section>
+
+    <section class="text-center mb-8">
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Join Our Community</h3>
+      <p class="text-lg text-gray-700 dark:text-gray-300">
+        Stay connected with us for the latest updates, promotions, and tech tips. Follow us on social media, sign up for our newsletter, and be part of the Wired Circuit community.
+      </p>
+    </section>
+
+    <section class="text-center">
+      <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Contact Us</h3>
+      <p class="text-lg text-gray-700 dark:text-gray-300">
+        Have questions or need assistance? Our customer support team is ready to help. Reach out via our contact page or give us a call.
+      </p>
+      <%= link_to 'Contact Us', root_path, class: 'inline-block bg-blue-500 text-white text-center py-2 px-4 mt-4 hover:bg-blue-700 rounded' %>
+    </section>
   </div>
-<% end %>
 
-<% if @selected_category %>
-  <%= render partial: 'products/prducts' %>
-<% end %>
+  <footer class="bg-gray-800 dark:bg-gray-900 text-white py-4">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Wired Circuit. All rights reserved.</p>
+      <div class="mt-2">
+        <%= link_to 'Privacy Policy', root_path, class: 'text-blue-400 hover:underline' %> |
+        <%= link_to 'Terms of Service', root_path, class: 'text-blue-400 hover:underline' %>
+      </div>
+    </div>
+  </footer>

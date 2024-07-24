@@ -16,18 +16,19 @@
         <% @cart_items.each do |item| %>
           <% if item[:product] && item[:quantity] %>
             <tr class="bg-gray-100 border-b">
-              <td class="py-2 px-4"><%= item[:product].name %></td>
-              <td class="py-2 px-4"><%= number_to_currency(item[:product].price) %></td>
-              <td class="py-2 px-4">
-                <%= form_with url: cart_path, method: :patch, local: true, class: "flex items-center" do |form| %>
-                  <%= hidden_field_tag :product_id, item[:product].id %>
-                  <%= form.number_field :quantity, min: 1, value: item[:quantity], class: "border border-gray-300 rounded px-2 py-1 w-16" %>
-                  <%= form.submit "Update", class: "ml-2 bg-blue-500 text-white px-4 py-1 rounded" %>
-                <% end %>
+              <td class="py-2 px-4 text-center"><%= item[:product].name %></td>
+              <td class="py-2 px-4 text-center"><%= number_to_currency(item[:product].price) %></td>
+              <td class="py-2 px-4 text-center">
+              <form action="<%= cart_path %>" method="post" class="text-center">
+                <input type="hidden" name="_method" value="patch">
+                <input type="hidden" name="product_id" value="<%= item[:product].id %>">
+                <input type="number" name="quantity" min="1" value="<%= item[:quantity] %>" class="border  border-gray-300 rounded px-2 py-1 w-16">
+                <input type="submit" value="Update" class="bg-blue-500 text-white px-4 py-1 rounded">
+              </form>
               </td>
-              <td class="py-2 px-4"><%= number_to_currency(item[:product].price * item[:quantity]) %></td>
-              <td class="py-2 px-4">
-                <%= button_to 'Remove', cart_path(product_id: item[:product].id), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 text-white px-4 py-1 rounded" %>
+              <td class="py-2 px-4 text-center"><%= number_to_currency(item[:product].price * item[:quantity]) %></td>
+              <td class="py-2 px-4 text-center">
+               <%= link_to 'Remove', cart_path(product_id: item[:product].id), data: {turbo_method: :delete}, class: "bg-red-500 text-white px-4 py-1 rounded" %>
               </td>
             </tr>
           <% end %>
@@ -40,5 +41,4 @@
 
 <% else %>
   <p class="text-lg">Your cart is empty.</p>
-  <pre><%= debug @cart_items %></pre>
 <% end %>

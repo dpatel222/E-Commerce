@@ -8,6 +8,16 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script >
+      document.addEventListener('DOMContentLoaded', function () {
+        const menuButton = document.querySelector('#menu-button');
+        const mobileMenu = document.querySelector('#mobile-menu');
+
+        menuButton.addEventListener('click', function () {
+          mobileMenu.classList.toggle('hidden');
+        });
+      });
+    </script>
   </head>
   <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
     <nav class="bg-white dark:bg-gray-900 shadow-lg">
@@ -15,43 +25,49 @@
         <span class="text-2xl font-semibold">Wired Circuit</span>
         <div class="hidden md:flex md:items-center">
           <ul class="flex space-x-4">
-            <li>
-              <a href="/" class="py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800">Home</a>
-            </li>
-            <li>
-              <a href="/products" class="py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800">Products</a>
-            </li>
-            <li>
-              <%= link_to 'My Cart', cart_path, class: "py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800"%>
-            </li>
+            <li><a href="/" class="py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800">Home</a></li>
+            <li><a href="/products" class="py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800">Products</a></li>
+            <li><%= link_to 'My Cart', cart_path, class: "py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800"%></li>
             <% if user_signed_in? %>
-            <li>
-              <%= link_to 'Order History', orders_path, class: "py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800" %>
-            </li>
+            <li><%= link_to 'Order History', orders_path, class: "py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-800" %></li>
             <% end %>
             <% if user_signed_in? %>
               <li class="flex space-x-2">
                 <%= link_to "User Settings", edit_user_registration_path, class: "py-1 px-2 rounded bg-blue-500 text-white text-sm hover:bg-blue-700" %>
                 <%= link_to 'Sign Out', destroy_user_session_path, data: {turbo_method: :delete}, class: "py-1 px-2 rounded bg-red-500 text-white text-sm hover:bg-red-700" %>
               </li>
-             
             <% else %>
-              <li>
-                <%= link_to "Sign Up", new_user_registration_path, class: "py-2 px-3 rounded bg-blue-500 text-white hover:bg-blue-700" %>
-              </li>
-              <li>
-                <%= link_to "Sign In", new_user_session_path, class: "py-2 px-3 rounded bg-blue-500 text-white hover:bg-blue-700" %>
-              </li>
+              <li><%= link_to "Sign Up", new_user_registration_path, class: "py-2 px-3 rounded bg-blue-500 text-white hover:bg-blue-700" %></li>
+              <li><%= link_to "Sign In", new_user_session_path, class: "py-2 px-3 rounded bg-blue-500 text-white hover:bg-blue-700" %></li>
             <% end %>
           </ul>
         </div>
         <div class="md:hidden">
-          <button class="text-gray-900 dark:text-white focus:outline-none">
+          <button id="menu-button" class="text-gray-900 dark:text-white focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden">
+        <ul class="flex flex-col space-y-2 p-4 bg-white dark:bg-gray-800">
+          <li><a href="/" class="py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Home</a></li>
+          <li><a href="/products" class="py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Products</a></li>
+          <li><%= link_to 'My Cart', cart_path, class: "py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-700"%></li>
+          <% if user_signed_in? %>
+          <li><%= link_to 'Order History', orders_path, class: "py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-700" %></li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li class="flex space-x-2">
+              <%= link_to "User Settings", edit_user_registration_path, class: "py-1 px-2 rounded bg-blue-500 text-white text-sm hover:bg-blue-700" %>
+              <%= link_to 'Sign Out', destroy_user_session_path, data: {turbo_method: :delete}, class: "py-1 px-2 rounded bg-red-500 text-white text-sm hover:bg-red-700" %>
+            </li>
+          <% else %>
+            <li><%= link_to "Sign Up", new_user_registration_path, class: "py-2 px-3 rounded bg-blue-500 text-white hover:bg-blue-700" %></li>
+            <li><%= link_to "Sign In", new_user_session_path, class: "py-2 px-3 rounded bg-blue-500 text-white hover:bg-blue-700" %></li>
+          <% end %>
+        </ul>
       </div>
     </nav>
     <div class="max-w-screen-xl mx-auto mt-4 p-4">
@@ -60,7 +76,6 @@
         <%= content_tag(:div, message, class: "p-4 mb-4 bg-blue-100 text-blue-800 rounded #{name}") %>
       <% end %>
       <!-- Filter form -->
-      
       <main>
         <%= yield %>
       </main>
